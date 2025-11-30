@@ -161,10 +161,7 @@
         "iwd",
         "efibootmgr",
         "intel-ucode",
-        "fastfetch",
-        "pipewire",
-        "pipewire-pulse",
-        "wireplumber"
+        "fastfetch"
     ],
     "parallel_downloads": 10,
     "profile_config": {
