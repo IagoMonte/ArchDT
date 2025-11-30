@@ -138,8 +138,7 @@
             ]
         },
         "optional_repositories": [
-            "multilib",
-            "testing"
+            "multilib"
         ]
     },
     "network_config": {
@@ -161,7 +160,48 @@
         "iwd",
         "efibootmgr",
         "intel-ucode",
-        "fastfetch"
+        "fastfetch",
+        "gstreamer",
+        "gst-libav",
+        "gst-plugins-base",
+        "gst-plugins-good",
+        "gst-plugins-bad",
+        "gst-plugins-ugly",
+        "ffmpeg",
+        "git",
+        "hyprland",
+        "hyprlock",
+        "hypridle",
+        "hyprcursor",
+        "hyprpaper",
+        "hyprpicker",
+        "kitty",
+        "rofi-wayland",
+        "dolphin",
+        "dolphin-plugins",
+        "ark",
+        "kio-admin",
+        "polkit-kde-agent",
+        "xdg-desktop-portal",
+        "xdg-desktop-portal-wlr",
+        "xdg-desktop-portal-hyprland",
+        "xdg-desktop-portal-gtk",
+        "gtk3", "gtk4", "qt5-wayland","qt6-wayland",
+        "cliphist",
+        "dunst",
+        "mpv",
+        "pavucontrol",
+        "xdg-user-dirs-gtk",
+        "ttf-droid",
+        "ttf-fira-code",
+        "ttf-fira-sans",
+        "ttf-firacode-nerd",
+        "ttf-jetbrains-mono-nerd",
+        "ttf-opensans",
+        "ttf-roboto",
+        "ttf-font-awesome",
+        "powerline-fonts",
+        "vivaldi"
     ],
     "parallel_downloads": 10,
     "profile_config": {
@@ -174,7 +214,9 @@
         "NetworkManager.service"
     ],
     "custom_commands": [
-        "mkdir -p /etc/sudoers.d && echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel-nopasswd && chmod 440 /etc/sudoers.d/wheel-nopasswd"
+        "mkdir -p /etc/sudoers.d && echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel-nopasswd && chmod 440 /etc/sudoers.d/wheel-nopasswd",
+        "su - iagodt -c 'git clone https://aur.archlinux.org/yay && cd ./yay && makepkg -si --noconfirm && cd .. && rm -rf yay/'",
+        "su - iagodt -c 'yay -S --noconfirm hyprshot wlogout qview visual-studio-code-bin'"
     ],
     "swap": true,
     "timezone": "America/Sao_Paulo",
