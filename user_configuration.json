@@ -11,104 +11,7 @@
     "auth_config": {},
     "bootloader": "Grub",
     "post_install": [],
-    "disk_config": {
-        "btrfs_options": {
-            "snapshot_config": null
-        },
-        "config_type": "manual_partitioning",
-        "device_modifications": [
-            {
-                "device": "/dev/sda",
-                "partitions": [
-                    {
-                        "btrfs": [],
-                        "dev_path": null,
-                        "flags": [
-                            "boot",
-                            "esp"
-                        ],
-                        "fs_type": "fat32",
-                        "mount_options": [],
-                        "mountpoint": "/boot",
-                        "obj_id": "f1b028c4-3f5a-454a-bbe5-57c5cde62a21",
-                        "size": {
-                            "sector_size": {
-                                "unit": "B",
-                                "value": 512
-                            },
-                            "unit": "GiB",
-                            "value": 1
-                        },
-                        "start": {
-                            "sector_size": {
-                                "unit": "B",
-                                "value": 512
-                            },
-                            "unit": "MiB",
-                            "value": 1
-                        },
-                        "status": "create",
-                        "type": "primary"
-                    },
-                    {
-                        "btrfs": [],
-                        "dev_path": null,
-                        "flags": [],
-                        "fs_type": "ext4",
-                        "mount_options": [],
-                        "mountpoint": "/",
-                        "obj_id": "be52c507-7a63-44a4-9943-b6a51798ac98",
-                        "size": {
-                            "sector_size": {
-                                "unit": "B",
-                                "value": 512
-                            },
-                            "unit": "GiB",
-                            "value": 14
-                        },
-                        "start": {
-                            "sector_size": {
-                                "unit": "B",
-                                "value": 512
-                            },
-                            "unit": "B",
-                            "value": 1074790400
-                        },
-                        "status": "create",
-                        "type": "primary"
-                    },
-                    {
-                        "btrfs": [],
-                        "dev_path": null,
-                        "flags": [],
-                        "fs_type": "ext4",
-                        "mount_options": [],
-                        "mountpoint": "/home",
-                        "obj_id": "4036cb63-9fbf-4ccf-a110-b87cb5f5c3fe",
-                        "size": {
-                            "sector_size": {
-                                "unit": "B",
-                                "value": 512
-                            },
-                            "unit": "B",
-                            "value": 10735321088
-                        },
-                        "start": {
-                            "sector_size": {
-                                "unit": "B",
-                                "value": 512
-                            },
-                            "unit": "B",
-                            "value": 16107175936
-                        },
-                        "status": "create",
-                        "type": "primary"
-                    }
-                ],
-                "wipe": true
-            }
-        ]
-    },
+    "disk_config": {},
     "hostname": "archdt",
     "kernels": [
         "linux"
@@ -146,6 +49,7 @@
     },
     "ntp": true,
     "packages": [
+        "archlinux-xdg-menu",
         "base",
         "base-devel",
         "linux-firmware",
@@ -173,10 +77,7 @@
         "hyprlock",
         "hypridle",
         "hyprcursor",
-        "hyprpaper",
-        "hyprpicker",
         "kitty",
-        "rofi-wayland",
         "dolphin",
         "dolphin-plugins",
         "ark",
@@ -186,9 +87,13 @@
         "xdg-desktop-portal-wlr",
         "xdg-desktop-portal-hyprland",
         "xdg-desktop-portal-gtk",
-        "gtk3", "gtk4", "qt5-wayland","qt6-wayland",
+        "gtk3",
+        "gtk4",
+        "qt5-wayland",
+        "qt6-wayland",
+        "qt6ct",
+        "qt5ct",
         "cliphist",
-        "dunst",
         "mpv",
         "pavucontrol",
         "xdg-user-dirs-gtk",
@@ -197,11 +102,67 @@
         "ttf-fira-sans",
         "ttf-firacode-nerd",
         "ttf-jetbrains-mono-nerd",
+        "ttf-material-symbols-variable",
         "ttf-opensans",
         "ttf-roboto",
-        "ttf-font-awesome",
+        "woff2-font-awesome",
         "powerline-fonts",
-        "vivaldi"
+        "vivaldi",
+        "quickshell",
+        "starship",
+        "libusb",
+        "blueman",
+        "bluez-tools",
+        "bluez-utils",
+        "breeze",
+        "breeze-gtk",
+        "breeze5",
+        "btop",
+        "cava",
+        "cpio",
+        "dnsmasq",
+        "evtest",
+        "firefox",
+        "flatpak",
+        "gnome-keyring",
+        "netcat",
+        "i2c-tools",
+        "lib32-alsa-plugins",
+        "lib32-libpulse",
+        "lib32-mesa",
+        "lib32-vulkan-radeon",
+        "libisoburn",
+        "libreoffice-fresh",
+        "libvirt",
+        "linuxconsole",
+        "mesa",
+        "noto-fonts",
+        "noto-fonts-emoji",
+        "npm",
+        "nwg-look",
+        "papirus-icon-theme",
+        "partitionmanager",
+        "python-pip",
+        "python-pipx",
+        "python-pywal",
+        "qemu-desktop",
+        "steam",
+        "swww",
+        "usbutils",
+        "virt-manager",
+        "virt-viewer",
+        "vulkan-radeon",
+        "webkit2gtk",
+        "wev",
+        "wf-recorder",
+        "wget",
+        "wine",
+        "wine-gecko",
+        "wine-mono",
+        "winetricks",
+        "wireshark-qt",
+        "wtype",
+        "xf86-video-amdgpu"
     ],
     "parallel_downloads": 10,
     "profile_config": {
@@ -215,8 +176,29 @@
     ],
     "custom_commands": [
         "mkdir -p /etc/sudoers.d && echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel-nopasswd && chmod 440 /etc/sudoers.d/wheel-nopasswd",
-        "su - iagodt -c 'git clone https://aur.archlinux.org/yay && cd ./yay && makepkg -si --noconfirm && cd .. && rm -rf yay/'",
-        "su - iagodt -c 'yay -S --noconfirm hyprshot wlogout qview visual-studio-code-bin'"
+        
+        
+        "su - iagodt -c 'git clone https://aur.archlinux.org/yay.git && cd ./yay && makepkg -si --noconfirm && cd .. && rm -rf yay/'",
+        
+        "su - iagodt -c 'yay -S --noconfirm ds4drv jstest-gtk-git sc-controller-git xboxdrv game-devices-udev hid-sony-panic-fix-dkms hidapitester-git'",
+        "su - iagodt -c 'yay -S --noconfirm github-desktop-bin visual-studio-code-bin simplenote-electron-bin qview'",
+        "su - iagodt -c 'yay -S --noconfirm logmein-hamachi haguichi'",
+        "su - iagodt -c 'yay -S --noconfirm heroic-games-launcher-bin spotify open-tv-bin'",
+        "su - iagodt -c 'yay -S --noconfirm opentabletdriver'",
+        "su - iagodt -c 'yay -S --noconfirm wlogout waypaper'",
+        
+        "su - iagodt -c 'git clone https://github.com/IagoMonte/ArchDT-dots.git &&  cd ./ArchDT-dots && git checkout -- . && cp .bashrc ~ && cp -r Wallpaper ~ && cd DOTS && mkdir -p ~/.config && cp -rn ./* ~/.config/ && cd ../.. && rm -rf ArchDT-dots/'",
+       
+        "su - iagodt -c 'git clone https://github.com/IagoMonte/ProfileSwitcherK500.git && cd ProfileSwitcherK500 && gcc packageTransfer.c -o lib_usb_fileSend -lusb-1.0'",
+        "cp /home/iagodt/ProfileSwitcherK500/lib_usb_fileSend /usr/local/bin/ && chmod +x /usr/local/bin/lib_usb_fileSend && cp /home/iagodt/ProfileSwitcherK500/ProfileSwitcher.sh /usr/local/bin/k500ProfileSwitcher && chmod +x /usr/local/bin/k500ProfileSwitcher",
+        
+        "mkdir -p /home/iagodt/.config/systemd/user/default.target.wants",
+        "ln -sf /home/iagodt/.config/systemd/user/swww.service /home/iagodt/.config/systemd/user/default.target.wants/swww.service",
+        "ln -sf /home/iagodt/.config/systemd/user/change_wallpaper.service /home/iagodt/.config/systemd/user/default.target.wants/change_wallpaper.service",
+        "ln -sf /home/iagodt/.config/systemd/user/change_wallpaper.timer /home/iagodt/.config/systemd/user/default.target.wants/change_wallpaper.timer",
+        
+        "wal -i /home/iagodt/Wallpaper/current/dune.png",
+        "ln -sf /home/iagodt/.cache/wal/starship.toml /home/iagodt/.config/starship.toml"
     ],
     "swap": true,
     "timezone": "America/Sao_Paulo",
