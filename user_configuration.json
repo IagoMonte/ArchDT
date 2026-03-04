@@ -175,31 +175,33 @@
         "NetworkManager.service"
     ],
     "custom_commands": [
+        "getent passwd 1000 | cut -d: -f1 > /root/archuser",
+        "bash -lc 'U=$(cat /root/archuser); test -n \"$U\" && usermod -aG wheel,input \"$U\"'",
         "mkdir -p /etc/sudoers.d && echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel-nopasswd && chmod 440 /etc/sudoers.d/wheel-nopasswd",
+
+        "su - $(cat /root/archuser) -c 'xdg-user-dirs-update --force'",
         
-        "su - iagodt -c 'xdg-user-dirs-update --force'",
+        "su - $(cat /root/archuser) -c 'git clone https://aur.archlinux.org/yay.git && cd ./yay && makepkg -si --noconfirm && cd .. && rm -rf yay/'",
         
-        "su - iagodt -c 'git clone https://aur.archlinux.org/yay.git && cd ./yay && makepkg -si --noconfirm && cd .. && rm -rf yay/'",
+        "su - $(cat /root/archuser) -c 'yay -S --noconfirm ds4drv jstest-gtk-git sc-controller-git xboxdrv game-devices-udev hid-sony-panic-fix-dkms hidapitester-git'",
+        "su - $(cat /root/archuser) -c 'yay -S --noconfirm github-desktop-bin visual-studio-code-bin simplenote-electron-bin qview'",
+        "su - $(cat /root/archuser) -c 'yay -S --noconfirm logmein-hamachi haguichi'",
+        "su - $(cat /root/archuser) -c 'yay -S --noconfirm heroic-games-launcher-bin spotify open-tv-bin'",
+        "su - $(cat /root/archuser) -c 'yay -S --noconfirm opentabletdriver'",
+        "su - $(cat /root/archuser) -c 'yay -S --noconfirm wlogout waypaper'",
         
-        "su - iagodt -c 'yay -S --noconfirm ds4drv jstest-gtk-git sc-controller-git xboxdrv game-devices-udev hid-sony-panic-fix-dkms hidapitester-git'",
-        "su - iagodt -c 'yay -S --noconfirm github-desktop-bin visual-studio-code-bin simplenote-electron-bin qview'",
-        "su - iagodt -c 'yay -S --noconfirm logmein-hamachi haguichi'",
-        "su - iagodt -c 'yay -S --noconfirm heroic-games-launcher-bin spotify open-tv-bin'",
-        "su - iagodt -c 'yay -S --noconfirm opentabletdriver'",
-        "su - iagodt -c 'yay -S --noconfirm wlogout waypaper'",
-        
-        "su - iagodt -c 'git clone https://github.com/IagoMonte/ArchDT-dots.git &&  cd ./ArchDT-dots && git checkout -- . && cp .bashrc ~ && cp -r Wallpaper ~ && cd DOTS && mkdir -p ~/.config && cp -rn ./* ~/.config/ && cd ../.. && rm -rf ArchDT-dots/'",
+        "su - $(cat /root/archuser) -c 'git clone https://github.com/IagoMonte/ArchDT-dots.git &&  cd ./ArchDT-dots && git checkout -- . && cp .bashrc ~ && cp -r Wallpaper ~ && cd DOTS && mkdir -p ~/.config && cp -rn ./* ~/.config/ && cd ../.. && rm -rf ArchDT-dots/'",
        
-        "su - iagodt -c 'git clone https://github.com/IagoMonte/ProfileSwitcherK500.git && cd ProfileSwitcherK500 && gcc packageTransfer.c -o lib_usb_fileSend -lusb-1.0'",
-        "cp /home/iagodt/ProfileSwitcherK500/lib_usb_fileSend /usr/local/bin/ && chmod +x /usr/local/bin/lib_usb_fileSend && cp /home/iagodt/ProfileSwitcherK500/ProfileSwitcher.sh /usr/local/bin/k500ProfileSwitcher && chmod +x /usr/local/bin/k500ProfileSwitcher",
+        "su - $(cat /root/archuser) -c 'git clone https://github.com/IagoMonte/ProfileSwitcherK500.git && cd ProfileSwitcherK500 && gcc packageTransfer.c -o lib_usb_fileSend -lusb-1.0'",
+        "cp /home/$(cat /root/archuser)/ProfileSwitcherK500/lib_usb_fileSend /usr/local/bin/ && chmod +x /usr/local/bin/lib_usb_fileSend && cp /home/$(cat /root/archuser)/ProfileSwitcherK500/ProfileSwitcher.sh /usr/local/bin/k500ProfileSwitcher && chmod +x /usr/local/bin/k500ProfileSwitcher && rm -rf /home/$(cat /root/archuser)/ProfileSwitcherK500",
         
-        "mkdir -p /home/iagodt/.config/systemd/user/default.target.wants",
-        "ln -sf /home/iagodt/.config/systemd/user/swww.service /home/iagodt/.config/systemd/user/default.target.wants/swww.service",
-        "ln -sf /home/iagodt/.config/systemd/user/change_wallpaper.service /home/iagodt/.config/systemd/user/default.target.wants/change_wallpaper.service",
-        "ln -sf /home/iagodt/.config/systemd/user/change_wallpaper.timer /home/iagodt/.config/systemd/user/default.target.wants/change_wallpaper.timer",
+        "mkdir -p /home/$(cat /root/archuser)/.config/systemd/user/default.target.wants",
+        "ln -sf /home/$(cat /root/archuser)/.config/systemd/user/swww.service /home/$(cat /root/archuser)/.config/systemd/user/default.target.wants/swww.service",
+        "ln -sf /home/$(cat /root/archuser)/.config/systemd/user/change_wallpaper.service /home/$(cat /root/archuser)/.config/systemd/user/default.target.wants/change_wallpaper.service",
+        "ln -sf /home/$(cat /root/archuser)/.config/systemd/user/change_wallpaper.timer /home/$(cat /root/archuser)/.config/systemd/user/default.target.wants/change_wallpaper.timer",
         
-        "wal -i /home/iagodt/Wallpaper/current/dune.png",
-        "ln -sf /home/iagodt/.cache/wal/starship.toml /home/iagodt/.config/starship.toml"
+        "su - $(cat /root/archuser) -c 'waypaper --backend swww --wallpaper /home/$(cat /root/archuser)/Wallpaper/current/dune.png'",
+        "ln -sf /home/$(cat /root/archuser)/.cache/wal/starship.toml /home/$(cat /root/archuser)/.config/starship.toml"
     ],
     "swap": true,
     "timezone": "America/Sao_Paulo",
