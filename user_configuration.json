@@ -200,7 +200,7 @@
         "ln -sf /home/$(cat /root/archuser)/.config/systemd/user/change_wallpaper.service /home/$(cat /root/archuser)/.config/systemd/user/default.target.wants/change_wallpaper.service",
         "ln -sf /home/$(cat /root/archuser)/.config/systemd/user/change_wallpaper.timer /home/$(cat /root/archuser)/.config/systemd/user/default.target.wants/change_wallpaper.timer",
         
-        "su - $(cat /root/archuser) -c 'waypaper --backend swww --wallpaper /home/$(cat /root/archuser)/Wallpaper/current/dune.png'",
+        "su - $(cat /root/archuser) -c 'wal -i /home/iagodt/Wallpaper/current/dune.png'",
         "ln -sf /home/$(cat /root/archuser)/.cache/wal/starship.toml /home/$(cat /root/archuser)/.config/starship.toml"
     ],
     "swap": true,
